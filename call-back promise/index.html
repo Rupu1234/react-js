@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>call back</title>
+</head>
+<body>
+    <p id="rupu"></p>
+</body>
+<script>
+
+    //promise    
+    let a=100;
+    let b=25;
+    const pro= new promise(
+        function(resolve,reject){
+            setTimeout(() => {
+            if(a>b){
+                resolve("resolve")
+            }
+            else{
+                reject("reject")
+            }
+          },3000);
+       }
+   ) 
+   console.log(pro);
+
+
+   //callback function
+     function main(main1){
+        console.log("rupu");
+        main1()
+     }
+     function main1(){
+        console.log("welcome");
+     }
+
+     main(main1)
+
+</script>
+</html>
