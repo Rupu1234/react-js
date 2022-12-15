@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>promise chaining</title>
+</head>
+<body>
+    
+</body>
+<script>
+    
+    //Promise chaining
+   function main(){
+    return new Promise(function(resolve,reject){
+        setTimeout(() => {
+           resolve("success") 
+        }, 2000);
+    })
+   }
+
+   function main1(res){
+    console.log("resolve",res);
+    return new Promise(function(resolve,reject){
+        setTimeout(() => {
+            reject("failure")
+        }, 1000);
+    })
+   }
+   main()
+   .then(main1)
+   .then(function(res1){
+    console.log(res1);
+   })
+   .catch(function(err){
+    console.log(err);
+   })
+
+
+    //Promise all
+    function main(){
+    return new Promise(function(resolve,reject){
+        setTimeout(() => {
+           resolve("success") 
+        }, 1000);
+    })
+   }
+
+   function main1(res){
+    console.log(res);
+    return new Promise(function(resolve,reject){
+        setTimeout(() => {
+            reject("failure")
+        }, 2000);
+    })
+   }
+
+   Promise.all([main(),main1()])
+   .then(function(success){
+    console.log(success);
+   })
+   .catch(function(err){
+    console.log(err);
+   })
+
+
+
+
+//Async and await
+function main(){
+    return new Promise(function(resolve,reject){
+        setTimeout(() => {
+           resolve("success") 
+        }, 2000);
+    })
+   }
+
+   function main1(res){
+    console.log(res);
+    return new Promise(function(resolve,reject){
+        setTimeout(() => {
+            resolve("failure")
+        }, 1000);
+    })
+   }
+    async function Parent(){
+        let res1=await main()
+        let res2=await main1()
+        console.log(res1,res2);
+    }
+    Parent()
+
+</script>
+</html>
